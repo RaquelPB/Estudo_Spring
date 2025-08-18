@@ -1,5 +1,6 @@
 package com.veiculo.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -25,6 +26,9 @@ public class Veiculo {
 
     @Column(nullable = false, length = 50)
     private Long cor;
+
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal valor;
 
     @Column(nullable = false)
     private Integer ano;
