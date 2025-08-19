@@ -1,4 +1,4 @@
-package com.veiculo.entity;
+package com.multimarcas.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

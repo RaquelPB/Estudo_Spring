@@ -1,66 +1,56 @@
-package com.veiculo.entity;
+package com.multimarcas.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Modelo {
-    
+
+public class Fabricante {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, unique = true, length = 100)
     private String nome;
-    
-    @ManyToOne
-    @JoinColumn(name = "fabricante_id", nullable = false)
-    private Fabricante fabricante;
 
-    public Modelo(){
+    @Column(nullable = false, length = 50)
+    private String paisOrigem;
+
+
+    public Fabricante(){
 
     }
 
-    public Modelo(Long id, String nome, Fabricante fabricante) {
+    public Fabricante(Long id, String nome, String paisOrigem) {
         this.id = id;
         this.nome = nome;
-        this.fabricante = fabricante;
+        this.paisOrigem = paisOrigem;
     }
+    
 
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public Fabricante getFabricante() {
-        return fabricante;
+    public String getPaisOrigem() {
+        return paisOrigem;
     }
-
-    public void setFabricante(Fabricante fabricante) {
-        this.fabricante = fabricante;
+    public void setPaisOrigem(String paisOrigem) {
+        this.paisOrigem = paisOrigem;
     }
-
-    
-
-    
-
-    
 
 
 }
