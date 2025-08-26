@@ -1,54 +1,27 @@
-package com.multimarcas.entity;
+package com.multimarcas.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import com.multimarcas.entity.Modelo;
 
-import org.hibernate.annotations.CreationTimestamp;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-
-@Entity
-
-public class Veiculo {
+public class VeiculoDTO {
     
-    @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false, unique = true, length = 7)
     private String placa;
-
-    @Column(nullable = false, length = 50)
     private String cor;
-
-    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal valor;
-
-    @Column(nullable = false)
     private Integer ano;
-
-    @Column(length = 500)
     private String descricao;
-
-    @CreationTimestamp
-    @Column(name = "data_cadastro", nullable = false, updatable = false)
     private LocalDateTime dataCadastro;
-
-    @ManyToOne
-    @JoinColumn(name = "modelo_id", nullable = false)
     private Modelo modelo;
 
-    public Veiculo(){
+    
+    public VeiculoDTO(){
 
     }
 
-    public Veiculo(Long id, String placa, String cor, Integer ano, String descricao, LocalDateTime dataCadastro,
+    public VeiculoDTO(Long id, String placa, String cor, Integer ano, String descricao, LocalDateTime dataCadastro,
             Modelo modelo) {
         this.id = id;
         this.placa = placa;
@@ -83,6 +56,14 @@ public class Veiculo {
         this.cor = cor;
     }
 
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
     public Integer getAno() {
         return ano;
     }
@@ -114,7 +95,5 @@ public class Veiculo {
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
     }
-
-    
 
 }

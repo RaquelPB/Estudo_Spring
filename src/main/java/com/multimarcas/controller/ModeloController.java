@@ -10,23 +10,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.multimarcas.dto.VeiculoDTO;
-import com.multimarcas.service.VeiculoService;
+import com.multimarcas.dto.ModeloDTO;
+import com.multimarcas.service.ModeloService;
 
 @RestController
-@RequestMapping("/api/veiculos")
-public class VeiculoController {
+@RequestMapping("/api/modelos")
+public class ModeloController {
     
     @Autowired
-    private VeiculoService service;
+    private ModeloService service;
 
     @PostMapping
-    public ResponseEntity<VeiculoDTO> criar(@RequestBody VeiculoDTO dto){
-        VeiculoDTO criado = service.criar(dto);
-         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+    public ResponseEntity<ModeloDTO> criar(@RequestBody ModeloDTO dto){
+        ModeloDTO criado = service.criar(dto);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(criado.getId())
                 .toUri();
         return ResponseEntity.created(location).body(criado);
     }
+
 }
