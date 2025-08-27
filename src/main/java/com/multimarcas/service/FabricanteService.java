@@ -1,20 +1,36 @@
 package com.multimarcas.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.multimarcas.dto.FabricanteDTO;
 import com.multimarcas.entity.Fabricante;
 import com.multimarcas.mapper.FabricanteMapper;
 import com.multimarcas.repository.FabricanteRepository;
 
-import jakarta.transaction.Transactional;
+
 
 @Service
 public class FabricanteService {
 
     @Autowired
     private FabricanteRepository repository;
+
+    @Transactional(readOnly = true)
+    public List<FabricanteDTO> listar(){
+        return FabricanteMapper.toDTOList(repository.findAll());
+    }
+
+    @Transactional(readOnly = true)
+    public FabricanteDTO buscarPorId (Long id){
+        return repository.findById(id)
+                .map(FabricanteMapper::toDto)
+                .orElseThrow(() -> new RuntimeException("Fabricante com ID " + id + " não encontrado."));
+
+    }
 
 
     @Transactional
@@ -24,13 +40,11 @@ public class FabricanteService {
             throw new IllegalArgumentException("Novo fabricante não deve ter ID definido.");
         }
 
-        // Verifica se já existe um fabricante com o mesmo nome
         if (repository.existsByNome(dto.getNome())) {
             throw new IllegalArgumentException("Já existe um fabricante com o nome: " + dto.getNome());
         }
 
         
-        // Retorna o DTO convertido da entidade salva
         Fabricante salvo = repository.save(FabricanteMapper.toEntity(dto));
 
         dto.setId(salvo.getId());

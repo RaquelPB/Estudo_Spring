@@ -19,4 +19,7 @@ public interface FabricanteRepository extends JpaRepository<Fabricante, Long> {
      * @return true se existir um fabricante com o nome fornecido, false caso contrário.
      */
     boolean existsByNome(String nome);
+    String findByNome(String nome);
+    String findById(long id);
+    String findByPaisOrigem(String paisOrigem);
 }

@@ -1,7 +1,8 @@
 package com.multimarcas.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -38,7 +39,7 @@ public class Veiculo {
 
     @CreationTimestamp
     @Column(name = "data_cadastro", nullable = false, updatable = false)
-    private LocalDateTime dataCadastro;
+    private LocalDate dataCadastro;
 
     @ManyToOne
     @JoinColumn(name = "modelo_id", nullable = false)
@@ -48,7 +49,7 @@ public class Veiculo {
 
     }
 
-    public Veiculo(Long id, String placa, String cor, Integer ano, String descricao, LocalDateTime dataCadastro,
+    public Veiculo(Long id, String placa, String cor, Integer ano, String descricao, LocalDate dataCadastro,
             Modelo modelo) {
         this.id = id;
         this.placa = placa;
@@ -99,11 +100,11 @@ public class Veiculo {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getDataCadastro() {
+    public LocalDate getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(LocalDateTime dataCadastro) {
+    public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 

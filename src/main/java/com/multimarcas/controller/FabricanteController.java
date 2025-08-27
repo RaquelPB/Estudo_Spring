@@ -2,9 +2,12 @@ package com.multimarcas.controller;
 
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +24,20 @@ public class FabricanteController {
     @Autowired
     private  FabricanteService service;
 
+    @GetMapping
+    public List<FabricanteDTO> listar(){
+        return service.listar();
+    }
+
+    
+    @GetMapping("/{id}")
+    public FabricanteDTO buscar (@PathVariable Long id){
+        return service.buscarPorId(id);
+    }
 
     @PostMapping
     public ResponseEntity<FabricanteDTO> criar(@RequestBody FabricanteDTO dto) {
-        // Chama o serviço para criar um novo fabricante e retorna o DTO criado
+       
         FabricanteDTO criado = service.criar(dto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")

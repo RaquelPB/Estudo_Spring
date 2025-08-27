@@ -1,7 +1,7 @@
 package com.multimarcas.dto;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import com.multimarcas.entity.Modelo;
 
 
@@ -13,7 +13,7 @@ public class VeiculoDTO {
     private BigDecimal valor;
     private Integer ano;
     private String descricao;
-    private LocalDateTime dataCadastro;
+    private LocalDate dataCadastro;
     private Modelo modelo;
 
     
@@ -21,7 +21,7 @@ public class VeiculoDTO {
 
     }
 
-    public VeiculoDTO(Long id, String placa, String cor, Integer ano, String descricao, LocalDateTime dataCadastro,
+    public VeiculoDTO(Long id, String placa, String cor, Integer ano, String descricao, LocalDate dataCadastro,
             Modelo modelo) {
         this.id = id;
         this.placa = placa;
@@ -80,11 +80,11 @@ public class VeiculoDTO {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getDataCadastro() {
+    public LocalDate getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(LocalDateTime dataCadastro) {
+    public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 

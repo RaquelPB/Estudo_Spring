@@ -1,5 +1,8 @@
 package com.multimarcas.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.multimarcas.dto.FabricanteDTO;
 import com.multimarcas.entity.Fabricante;
 
@@ -41,4 +44,17 @@ public final class FabricanteMapper {
 
         return f;
     }
+
+    public static List<FabricanteDTO> toDTOList(List<Fabricante> list) {
+        return list == null ? 
+            List.of() :
+            list.stream().map(FabricanteMapper::toDto).collect(Collectors.toList());
+    }
+
+    public static List<Fabricante> toEntyList(List<FabricanteDTO> list) {
+        return list == null ? 
+            List.of() :
+            list.stream().map(FabricanteMapper::toEntity).collect(Collectors.toList());
+    }
+
 }
