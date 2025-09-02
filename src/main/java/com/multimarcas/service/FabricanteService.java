@@ -50,4 +50,23 @@ public class FabricanteService {
         dto.setId(salvo.getId());
         return dto;
     }
+
+
+    @Transactional
+    public FabricanteDTO atualizar(Long id, FabricanteDTO dto){
+        Fabricante existente = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Fabricante não encontrado."));
+        existente.setNome(dto.getNome());
+        existente.setPaisOrigem(dto.getPaisOrigem());
+        return FabricanteMapper.toDto(repository.save(existente));
+    }
+
+    @Transactional
+    public void deletar(Long id){
+
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Fabricante não encontrado.");
+        }
+        repository.deleteById(id);
+    }
 }
