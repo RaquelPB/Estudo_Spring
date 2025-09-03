@@ -18,4 +18,6 @@ public interface ModeloRepository extends JpaRepository<Modelo, Long> {
      * @return 
      */
     boolean existsByNome(String nome);
+    boolean existsByFabricanteId(Long fabricanteId);
+    
 }

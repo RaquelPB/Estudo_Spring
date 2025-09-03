@@ -19,7 +19,7 @@ public class Modelo {
     private String nome;
     
     @ManyToOne
-    @JoinColumn(name = "fabricante_id")
+    @JoinColumn(name = "fabricante_id", nullable =  true)
     private Fabricante fabricante;
 
     public Modelo(){

@@ -21,14 +21,14 @@ public class VeiculoDTO {
 
     }
 
-    public VeiculoDTO(Long id, String placa, String cor, Integer ano, String descricao, LocalDate dataCadastro,
+    public VeiculoDTO(Long id, String placa, String cor, BigDecimal valor, Integer ano, String descricao,
             Modelo modelo) {
         this.id = id;
         this.placa = placa;
         this.cor = cor;
+        this.valor = valor;
         this.ano = ano;
         this.descricao = descricao;
-        this.dataCadastro = dataCadastro;
         this.modelo = modelo;
     }
 

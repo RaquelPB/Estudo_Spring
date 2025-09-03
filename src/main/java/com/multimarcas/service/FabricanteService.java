@@ -3,6 +3,7 @@ package com.multimarcas.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +11,7 @@ import com.multimarcas.dto.FabricanteDTO;
 import com.multimarcas.entity.Fabricante;
 import com.multimarcas.mapper.FabricanteMapper;
 import com.multimarcas.repository.FabricanteRepository;
+import com.multimarcas.repository.ModeloRepository;
 
 
 
@@ -18,6 +20,9 @@ public class FabricanteService {
 
     @Autowired
     private FabricanteRepository repository;
+
+    @Autowired
+    private ModeloRepository modeloRepository;
 
     @Transactional(readOnly = true)
     public List<FabricanteDTO> listar(){
@@ -67,6 +72,11 @@ public class FabricanteService {
         if (!repository.existsById(id)) {
             throw new RuntimeException("Fabricante não encontrado.");
         }
+
+        if (modeloRepository.existsByFabricanteId(id)) {
+        throw new DataIntegrityViolationException("Não é possível deletar o fabricante, pois existem modelos associados a ele.");
+        }
+
         repository.deleteById(id);
     }
 }

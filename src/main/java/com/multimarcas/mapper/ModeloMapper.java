@@ -1,5 +1,8 @@
 package com.multimarcas.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.multimarcas.dto.ModeloDTO;
 import com.multimarcas.entity.Fabricante;
 import com.multimarcas.entity.Modelo;
@@ -40,5 +43,17 @@ public class ModeloMapper {
         m.setFabricante(dto.getFabricante());
 
         return m;
+    }
+
+    public static List<ModeloDTO> toDTOList(List<Modelo> list) {
+        return list == null ? 
+            List.of() :
+            list.stream().map(ModeloMapper::tDto).collect(Collectors.toList());
+    }
+
+    public static List<Modelo> toEntyList(List<ModeloDTO> list) {
+        return list == null ? 
+            List.of() :
+            list.stream().map(ModeloMapper::toEntity).collect(Collectors.toList());
     }
 }

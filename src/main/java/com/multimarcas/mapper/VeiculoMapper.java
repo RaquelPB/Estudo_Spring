@@ -1,5 +1,7 @@
 package com.multimarcas.mapper;
 
+import java.util.List;
+
 import com.multimarcas.dto.VeiculoDTO;
 import com.multimarcas.entity.Modelo;
 import com.multimarcas.entity.Veiculo;
@@ -15,13 +17,13 @@ public class VeiculoMapper {
      * @return 
      */
 
-    public static VeiculoDTO tDto(Veiculo entity){
+    public static VeiculoDTO toDto(Veiculo entity){
         if (entity == null) return null;
         
         Modelo modelo = new Modelo();
         modelo.setId(entity.getModelo().getId());
 
-        return new VeiculoDTO(entity.getId(), entity.getPlaca(), entity.getCor(), entity.getAno(), entity.getDescricao(), entity.getDataCadastro(), modelo);
+        return new VeiculoDTO(entity.getId(), entity.getPlaca(), entity.getCor(), entity.getValor(), entity.getAno(), entity.getDescricao(), modelo);
             
     }
 
@@ -44,6 +46,18 @@ public class VeiculoMapper {
         veiculo.setModelo(dto.getModelo());
 
         return veiculo;
+    }
+
+    public static List<VeiculoDTO> toDTOList(List<Veiculo> list) {
+        return list == null ? 
+            List.of() :
+            list.stream().map(VeiculoMapper::toDto).toList();
+    }
+
+    public static List<Veiculo> toEntyList(List<VeiculoDTO> list) {
+        return list == null ? 
+            List.of() :
+            list.stream().map(VeiculoMapper::toEntity).toList();
     }
 
 }
