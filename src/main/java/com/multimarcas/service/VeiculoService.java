@@ -8,6 +8,7 @@ import com.multimarcas.dto.VeiculoDTO;
 import com.multimarcas.entity.Veiculo;
 import com.multimarcas.mapper.VeiculoMapper;
 import com.multimarcas.repository.VeiculoRepository;
+import com.multimarcas.util.ValidacaoVeiculo;
 
 
 
@@ -39,9 +40,10 @@ public class VeiculoService {
             throw new IllegalArgumentException("Novo veículo não deve ter ID definido.");
         }
 
-        if (repository.existsById(dto.getId())) {
-            throw new IllegalArgumentException("Já existe um veículo com O ID cadastrado: " + dto.getId()); 
+        if (!ValidacaoVeiculo.isPlacaValida(dto)) {
+            throw new IllegalArgumentException("Placa inválida: " + dto.getPlaca());
         }
+         
 
         Veiculo salvo = repository.save(VeiculoMapper.toEntity(dto));
         dto.setId(salvo.getId());

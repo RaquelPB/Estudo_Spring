@@ -40,6 +40,7 @@ public class VeiculoMapper {
         veiculo.setId(dto.getId());
         veiculo.setPlaca(dto.getPlaca());
         veiculo.setCor(dto.getCor());
+        veiculo.setValor(dto.getValor());
         veiculo.setAno(dto.getAno());
         veiculo.setDescricao(dto.getDescricao());
         veiculo.setDataCadastro(dto.getDataCadastro());
