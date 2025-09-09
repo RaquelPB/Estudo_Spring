@@ -43,7 +43,12 @@ public class VeiculoService {
         if (!ValidacaoVeiculo.isPlacaValida(dto)) {
             throw new IllegalArgumentException("Placa inválida: " + dto.getPlaca());
         }
-         
+
+        if (repository.existsByPlaca(dto.getPlaca())) {
+            throw new IllegalArgumentException("Placa já cadastrada: " + dto.getPlaca());
+            
+        }
+        
 
         Veiculo salvo = repository.save(VeiculoMapper.toEntity(dto));
         dto.setId(salvo.getId());
