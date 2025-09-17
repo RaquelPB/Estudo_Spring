@@ -61,7 +61,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Object> handleDataIntegrity(DataIntegrityViolationException ex) {
-        //log.error("Violação de integridade", ex);
+    
         return body(HttpStatus.CONFLICT, "Violação de integridade");
     }
 
