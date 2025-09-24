@@ -1,23 +1,24 @@
-function mostrarSecao(secaoid) {
-    document.querySelectorAll('.section').forEach(secao => {
-        secao.style.display = 'none';
+// Função responsável por limpar as sections
+const limparSections = function() {
+    document.querySelectorAll(".section").forEach(function(section) {
+        section.style.display = "none";
     });
-
-    document.getElementById(secaoid).style.display = 'block';
-}
-
-document.querySelectorAll(".nav-link").forEach(function(link) {
-    link.addEventListener("click", function() {
-        switch(this.id) {
-            case "bt-fabricante":
-                mostrarSecao('fabricantes');
-                break;
-            case "bt-modelo":
-                mostrarSecao('modelos');
-                break;
-            case "bt-veiculo":
-                mostrarSecao('veiculos');
-                break;
-        }
-    }
-)});
+};
+ 
+// Evento de clique no botão fabricantes
+document.getElementById("bt-fabricante").addEventListener("click", function(event) {
+    limparSections();
+    document.querySelector("#fabricantes").style.display = "block";
+});
+ 
+// Evento de clique no botão modelos
+document.getElementById("bt-modelo").addEventListener("click", function(event) {
+    limparSections();
+    document.querySelector("#modelos").style.display = "block";
+});
+ 
+// Evento de clique no botão veículos
+document.getElementById("bt-veiculo").addEventListener("click", function(event) {
+    limparSections();
+    document.querySelector("#veiculos").style.display = "block";
+});

@@ -51,6 +51,13 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #
   display: none;
 }
 
+.container{
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Responsividade */
 @media (max-width: 900px) {
   .site-header { padding: 12px 24px; }
