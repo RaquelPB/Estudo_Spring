@@ -1,3 +1,21 @@
+async function getData() {
+    const url = "http://localhost:8080/api/fabricantes";
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error("Erro na requisição: " + response.status);
+        }
+
+        const dadosFabricantes = await response.json();
+        return dadosFabricantes;
+
+    } catch (error) {
+        console.error("Erro ao obter os dados: ", error);
+    }
+}
+
+
 
 // Função responsável por limpar as sections
 const limparSections = function() {
@@ -5,17 +23,49 @@ const limparSections = function() {
         section.style.display = "none";
     });
 };
- 
+
+// Função para criar tabelas dinamicamente
+
+function criarTabela(dados) {
+   
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const tbody = document.createElement("tbody");
+
+    const cabecalho = Object.keys(dados[0]);
+
+    const tr = document.createElement("tr");
+    cabecalho.forEach(function(campo) {
+        const th = document.createElement("th");
+        th.textContent = campo;
+        tr.appendChild(th);
+    });
+
+    thead.appendChild(tr);
+    table.appendChild(thead);
+
+    dados.forEach(function(item) {
+        const tr = document.createElement("tr");
+        cabecalho.forEach(function(campo) {
+            const td = document.createElement("td");
+            td.textContent = item[campo];
+            tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+    });
+
+    table.appendChild(tbody);
+
+    return table;
+}
+
+
 // Evento de clique no botão fabricantes
-document.getElementById("bt-fabricante").addEventListener("click", function(event) {
+document.getElementById("bt-fabricante").addEventListener("click", async function(event) {
     limparSections();
     document.querySelector("#fabricantes").style.display = "block";
-    const dadosFabricantes = [
-        { ID: 1, nome: "Ford", pais: "Estados Unidos" },
-        { ID: 2, nome: "Toyota", pais: "Japão" },
-        { ID: 3, nome: "Volkswagen", pais: "Alemanha" }
-    ];
-    document.querySelector("#fabricantes").appendChild(criarTabela(dadosFabricantes));
+
+    document.querySelector("#fabricantes").appendChild(criarTabela( await getData()));
 });
  
 // Evento de clique no botão modelos
@@ -30,43 +80,4 @@ document.getElementById("bt-veiculo").addEventListener("click", function(event) 
     document.querySelector("#veiculos").style.display = "block";
 });
 
-// Função para criar uma tabela a partir de um array de objetos
-
-function criarTabela(dados) { 
-
-    const table = document.createElement("table");
-    const thead = document.createElement("thead");
-    const tbody = document.createElement("tbody");
-
-    //criar o cabeçalho da tabela
-
-    const cabecalho = Object.keys(dados[0]);
-
-
-    const tr = document.createElement("tr");
-    cabecalho.forEach(function(campo) {
-        const th = document.createElement("th");
-        th.textContent = campo;
-        tr.appendChild(th);
-    });
-    
-    thead.appendChild(tr);
-    table.appendChild(thead);
-
-    //criar o corpo da tabela
-
-    dados.forEach(function(item) {
-        const tr = document.createElement("tr");
-        cabecalho.forEach(function(campo) {
-            const td = document.createElement("td");
-            td.textContent = item[campo];
-            tr.appendChild(td);
-        });
-        tbody.appendChild(tr);
-    });
-
-    tbody.appendChild(tr);
-    table.appendChild(tbody);
-    return table;
-}
 
