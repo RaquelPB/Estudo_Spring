@@ -8,8 +8,8 @@ async function getData(url) {
             throw new Error("Erro na requisição: " + response.status);
         }
 
-        const dadosFabricantes = await response.json();
-        return dadosFabricantes;
+        const dados = await response.json();
+        return dados;
 
     } catch (error) {
         console.error("Erro ao obter os dados: ", error);

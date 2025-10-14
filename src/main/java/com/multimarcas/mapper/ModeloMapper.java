@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.multimarcas.dto.ModeloDTO;
-import com.multimarcas.entity.Fabricante;
+//import com.multimarcas.entity.Fabricante;
 import com.multimarcas.entity.Modelo;
 
 
@@ -22,10 +22,12 @@ public class ModeloMapper {
     public static ModeloDTO tDto(Modelo entity){
         if(entity == null) return null;
 
-        Fabricante fabricante =  new Fabricante();
-        fabricante.setId(entity.getFabricante().getId());
+        // Fabricante fabricante =  new Fabricante();
+        // fabricante.setId(entity.getFabricante().getId());
+        // fabricante.setNome(entity.getFabricante().getNome());
+        // fabricante.setPaisOrigem(entity.getFabricante().getPaisOrigem());
         
-        return new ModeloDTO(entity.getId(), entity.getNome(), fabricante);
+        return new ModeloDTO(entity.getId(), entity.getNome(), entity.getFabricante());
     }
 
      /**
