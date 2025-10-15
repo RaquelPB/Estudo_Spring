@@ -5,6 +5,11 @@ document.getElementById("bt-fabricante").addEventListener("click", async functio
     //setRemoverElementos(".tabela-dados");
     document.querySelector("#fabricantes").style.display = "block";
     const dadosFabricante = await getData("http://localhost:8080/api/fabricantes");
+    if(dadosFabricante.ok === false) {
+        document.querySelector("#fabricantes").innerHTML = "<p>Erro ao carregar dados dos Fabrincantes</p>";
+        document.querySelector("#fabricantes").style.color = "red";
+        return;
+    }
     document.querySelector("#fabricantes").appendChild(criarTabelaFabricante(dadosFabricante));
 });
  
@@ -23,6 +28,6 @@ document.getElementById("bt-veiculo").addEventListener("click", async function(e
     //setRemoverElementos(".tabela-dados");
     document.querySelector("#veiculos").style.display = "block";
     const dadosVeiculo = await getData("http://localhost:8080/api/veiculos");
-    document.querySelector("#modelos").appendChild(criarTabelaVeiculo(dadosVeiculo));
+    document.querySelector("#veiculos").appendChild(criarTabelaVeiculo(dadosVeiculo));
 
 });

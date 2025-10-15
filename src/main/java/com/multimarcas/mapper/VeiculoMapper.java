@@ -23,7 +23,7 @@ public class VeiculoMapper {
         Modelo modelo = new Modelo();
         modelo.setId(entity.getModelo().getId());
 
-        return new VeiculoDTO(entity.getId(), entity.getPlaca(), entity.getCor(), entity.getValor(), entity.getAno(), entity.getDescricao(), modelo);
+        return new VeiculoDTO(entity.getId(), entity.getPlaca(), entity.getCor(), entity.getValor(), entity.getAno(), entity.getDescricao(), entity.getModelo());
             
     }
 

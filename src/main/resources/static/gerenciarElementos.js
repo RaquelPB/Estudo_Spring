@@ -11,9 +11,12 @@ const setMostrarOcutarElemento = function(esconder, elemento) {
     document.querySelectorAll(elemento).forEach(function(section) {
         section.style.display = esconder ? "none" : "block";
     });
-    document.querySelectorAll(elemento).forEach(function(section) {
-        section.remove();
+}
+
+const setRemoverElementos = function(elemento) {
+    document.querySelectorAll(elemento).forEach(function(item) {
+        item.remove();
     });
-};
+}
 
 

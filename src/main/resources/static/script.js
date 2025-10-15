@@ -5,13 +5,13 @@ async function getData(url) {
     try {
         const response = await fetch(url);
         if (!response.ok) {
-            throw new Error("Erro na requisição: " + response.status);
+            return response; 
         }
 
-        const dados = await response.json();
-        return dados;
+        const resultado = await response.json();
+        return resultado;
 
     } catch (error) {
-        console.error("Erro ao obter os dados: ", error);
+        return error;
     }
 }
