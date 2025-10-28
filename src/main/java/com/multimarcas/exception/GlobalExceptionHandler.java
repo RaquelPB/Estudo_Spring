@@ -39,9 +39,15 @@ public class GlobalExceptionHandler {
         String msg = ex.getMessage();
         if (msg != null) {
             String lower = msg.toLowerCase();
-            if (lower.contains("nro encontrado")) {
-                //log.debug("Recurso nro encontrado: {}", msg);
+            if (lower.contains("não encontrado")) {
+                //log.debug("Recurso não encontrado: {}", msg);
                 return body(HttpStatus.NOT_FOUND, msg); //404
+            }
+            // Trata para violação de integridade referencial
+            if (lower.contains("veículos associados") || 
+                lower.contains("não é possível excluir") ||
+                lower.contains("exixtem veiculos")) {
+                return body(HttpStatus.CONFLICT, msg); //409
             }
         }
         //log.error("Erro inesperado", ex);

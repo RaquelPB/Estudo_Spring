@@ -1,3 +1,6 @@
+const modal = document.getElementById("modal");
+const CLOSE_MODAL_BUTTON = document.getElementById("close-modal");
+
 
 // Evento de clique no botão fabricantes
 document.getElementById("bt-fabricante").addEventListener("click", async function(event) {
@@ -31,3 +34,14 @@ document.getElementById("bt-veiculo").addEventListener("click", async function(e
     document.querySelector("#veiculos").appendChild(criarTabelaVeiculo(dadosVeiculo));
 
 });
+
+//evento de clique no botão fechar modal
+
+CLOSE_MODAL_BUTTON.addEventListener("click", function() {
+    modal.style.display = "none";
+});
+
+//evento de clique no botão adicionar fabricante
+document.getElementById("novo-fabricante").addEventListener("click", async function(event) {
+    modal.style.display = "block";
+ });

@@ -7,11 +7,11 @@ const criarTabelaVeiculo = (dados) => {
    const trTitle = document.createElement("tr");
    const th = document.createElement("th");
    th.textContent = "Veículos";
-   th.colSpan = 5;
+   th.colSpan = 6;
    trTitle.appendChild(th);
    thead.appendChild(trTitle); 
 
-    const cabecalho = ["Placa", "Ano", "Cor", "Modelo", "Fabricante"];
+    const cabecalho = ["Placa", "Ano", "Cor", "Modelo", "Fabricante", "Acão"];
     const tr = document.createElement("tr");
     cabecalho.forEach((campo) => {
         const th = document.createElement("th");
@@ -59,4 +59,6 @@ const criarTabelaVeiculo = (dados) => {
     table.appendChild(thead);
 
     return table;
+
+
 }

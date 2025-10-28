@@ -33,5 +33,8 @@ function criarTabelaFabricante(dados) {
 
     table.appendChild(tbody);
 
+
+
+
     return table;
 }

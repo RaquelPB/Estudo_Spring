@@ -64,6 +64,11 @@ public class ModeloService {
             throw new RuntimeException("Modelo não encontrado.");
         }
 
+        // Verifica se existem veículos associados ao modelo
+        //if (repository.temVeiculosAssociados(id)) {
+       //     throw new RuntimeException("Não é possível deletar o modelo, existem veículos associados a ele.");
+       // }
+
         repository.deleteById(id);
     }
 
