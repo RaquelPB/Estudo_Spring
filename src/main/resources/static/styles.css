@@ -72,6 +72,47 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #
   cursor: pointer;
 }
 
+
+#modal-title{
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: var(--brand-dark);
+  font-weight: 600;
+}
+
+#form-fabricante input{
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+}
+
+#form-fabricante label{
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+}
+
+#form-fabricante select{
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+}
+
+#form-fabricante button{
+  margin-top: 20px;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
 /* Tabela centralizada e estilizada */
 
 .container{

@@ -35,6 +35,41 @@ document.getElementById("bt-veiculo").addEventListener("click", async function(e
 
 });
 
+
+//evento de clique botão enviar forulario
+
+document.getElementById("form-fabricante").addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const nome_fabricante = document.getElementById("nome-fabricante").value;
+    const pais_origem = document.getElementById("pais-fabricante").value;
+
+
+    const require = await fetch("http://localhost:8080/api/fabricantes", {
+        method: "POST",
+        
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+             nome: nome_fabricante,
+             paisOrigem: pais_origem
+        })
+    });
+
+    if (require.status === 409) {
+        alert("Conflito: O fabricante já existe ou há um problema com os dados enviados.");
+    } else if (require.ok) {
+        alert("Fabricante adicionado com sucesso!");
+        modal.style.display = "none";
+    } else {
+        alert("Erro ao adicionar fabricante.");
+    }
+});
+
+
 //evento de clique no botão fechar modal
 
 CLOSE_MODAL_BUTTON.addEventListener("click", function() {
