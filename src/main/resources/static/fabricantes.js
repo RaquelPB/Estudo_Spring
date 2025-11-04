@@ -4,10 +4,16 @@ function criarTabelaFabricante(dados) {
     const thead = document.createElement("thead");
     const tbody = document.createElement("tbody");
 
-    
+    // Cria o título da tabela
+    const trTitle = document.createElement("tr");
+    const thTitle = document.createElement("th");
+    thTitle.textContent = "Fabricantes";
+    const cabecalho = Object.keys(dados[0]);
+    thTitle.colSpan = cabecalho.length;
+    trTitle.appendChild(thTitle);
+    thead.appendChild(trTitle);
 
     // Cria o cabeçalho da tabela
-    const cabecalho = Object.keys(dados[0]);
     const tr = document.createElement("tr");
 
 
@@ -33,8 +39,8 @@ function criarTabelaFabricante(dados) {
 
     table.appendChild(tbody);
 
-
-
+    //adiciona classe para estilizar a tabela
+    table.classList.add("tabela-dados");
 
     return table;
 }

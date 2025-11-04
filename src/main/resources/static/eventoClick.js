@@ -4,8 +4,8 @@ const CLOSE_MODAL_BUTTON = document.getElementById("close-modal");
 
 // Evento de clique no botão fabricantes
 document.getElementById("bt-fabricante").addEventListener("click", async function(event) {
-    setMostrarOcutarElemento(true, ".minha-section");
-    //setRemoverElementos(".tabela-dados");
+    setMostrarOcutarElemento(true, ".section");
+    setRemoverElementos(".tabela-dados");
     document.querySelector("#fabricantes").style.display = "block";
     const dadosFabricante = await getData("http://localhost:8080/api/fabricantes");
     if(dadosFabricante.ok === false) {
@@ -18,17 +18,22 @@ document.getElementById("bt-fabricante").addEventListener("click", async functio
  
 // Evento de clique no botão modelos
 document.getElementById("bt-modelo").addEventListener("click", async function(event) {
-    setMostrarOcutarElemento(true, ".minha-section");
-    //setRemoverElementos(".tabela-dados");
+    setMostrarOcutarElemento(true, ".section");
+    setRemoverElementos(".tabela-dados");
     document.querySelector("#modelos").style.display = "block";
     const dadosModelo = await getData("http://localhost:8080/api/modelos");
+    if(dadosModelo.ok === false) {
+        document.querySelector("#modelos").innerHTML = "<p>Erro ao carregar dados dos Modelos</p>";
+        document.querySelector("#modelos").style.color = "red";
+        return;
+    }
     document.querySelector("#modelos").appendChild(criarTabelaModelo(dadosModelo));
 });
- 
+
 // Evento de clique no botão veículos
 document.getElementById("bt-veiculo").addEventListener("click", async function(event) {
-    setMostrarOcutarElemento(true, ".minha-section");
-    //setRemoverElementos(".tabela-dados");
+    setMostrarOcutarElemento(true, ".section");
+    setRemoverElementos(".tabela-dados");
     document.querySelector("#veiculos").style.display = "block";
     const dadosVeiculo = await getData("http://localhost:8080/api/veiculos");
     document.querySelector("#veiculos").appendChild(criarTabelaVeiculo(dadosVeiculo));
@@ -36,8 +41,7 @@ document.getElementById("bt-veiculo").addEventListener("click", async function(e
 });
 
 
-//evento de clique botão enviar forulario
-
+//evento de clique botão enviar formulario fabricante
 document.getElementById("form-fabricante").addEventListener("submit", async function(event) {
 
     event.preventDefault();
@@ -70,13 +74,72 @@ document.getElementById("form-fabricante").addEventListener("submit", async func
 });
 
 
-//evento de clique no botão fechar modal
 
+//evento de clique botão enviar formulario modelo
+document.getElementById("form-modelo").addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+    const nome_modelo = document.getElementById("nome-modelo").value;
+    const fabricante_id = document.getElementById("fabricante-modelo").value;
+    const require = await fetch("http://localhost:8080/api/modelos", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+             nome: nome_modelo,
+             fabricanteId: fabricante_id
+        })
+    });
+    if (require.status === 409) {
+        alert("Conflito: O modelo já existe ou há um problema com os dados enviados.");
+    } else if (require.ok) {
+        alert("Modelo adicionado com sucesso!");
+        modal.style.display = "none";
+    } else {
+        alert("Erro ao adicionar modelo.");
+    }
+});
+
+//carga dos fabricantes para o select do formulario modelo
+document.getElementById("novo-modelo").addEventListener("click", async function() {
+    setMostrarOcutarElemento(true, ".modal-content");
+    
+            const dadosFabricantes = await getData("http://localhost:8080/api/fabricantes");
+        if (dadosFabricantes.status === 400 || dadosFabricantes.error) {
+            alert("Erro ao carregar fabricantes para o formulário de modelo.");
+            return;
+        }
+
+        dadosFabricantes.forEach(function(fabricante) {
+            const option = document.createElement("option");
+            option.value = fabricante.id;
+            option.textContent = fabricante.nome;
+            document.getElementById("fabricante-modelo").appendChild(option);
+        });
+
+        modal.style.display = "block";
+        setMostrarOcutarElemento(false, ".modal-content-modelo");
+} );
+    const selectFabricante = document.getElementById("fabricante-modelo");
+
+
+
+//evento de clique no botão fechar modal
 CLOSE_MODAL_BUTTON.addEventListener("click", function() {
     modal.style.display = "none";
 });
 
 //evento de clique no botão adicionar fabricante
 document.getElementById("novo-fabricante").addEventListener("click", async function(event) {
+    setMostrarOcutarElemento(true, ".modal-content");
     modal.style.display = "block";
+    setMostrarOcutarElemento(false, "#modal-content-fabricante");
  });
+
+ //evento de clique no botão adicionar modelo
+ document.getElementById("novo-modelo").addEventListener("click", async function(event) {
+    setMostrarOcutarElemento(true, ".modal-content");
+    modal.style.display = "block";
+    setMostrarOcutarElemento(false, "#modal-content-modelo");
+ } );

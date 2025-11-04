@@ -65,6 +65,17 @@
                     <button type="submit" class="btn primary">Enviar</button>
                 </form>
           </div>
+          <div id="modal-content-modelo" class="modal-content">
+                <div id="modal-title">Cadastro de Modelo</div>
+                <form id="form-modelo">
+                    <label for="nome-modelo">Nome do Modelo:</label>
+                    <input type="text" id="nome-modelo" name="nome-modelo" placeholder="Nome do modelo">
+                    <label for="fabricante-modelo">Fabricante:</label>
+                    <select id="fabricante-modelo" name="fabricante-modelo" required>
+                        <option value="" disabled selected>Selecione um fabricante</option>
+                    </select>
+                    <button type="submit" class="btn primary">Enviar</button>
+                </form>
         </div>
     </main>
 
@@ -76,9 +87,13 @@
             </section>
             <section id="modelos" class="section">
                 <h2>Modelos</h2>
+                <p>Informações sobre Modelos de automóveis</p>
+                <button id="novo-modelo" class="botao-novo">Adicionar Modelo</button>
             </section>
             <section id="veiculos" class="section">
                 <h2>Veiculos</h2>
+                <p>Informações sobre Veículos</p>
+                <button id="novo-veiculo" class="botao-novo">Adicionar Veiculo</button>
             </section>
         </div>
 

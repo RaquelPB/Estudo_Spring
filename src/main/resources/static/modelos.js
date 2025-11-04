@@ -3,14 +3,15 @@ const criarTabelaModelo = (dados) => {
     const thead = document.createElement("thead");
     const tbody = document.createElement("tbody");
 
-    // Cria o cabeçalho da tabela
-   const trTitle = document.createElement("tr");
-   const th = document.createElement("th");
-   th.textContent = "Modelos";
-   th.colSpan = 3;
-   trTitle.appendChild(th);
-   thead.appendChild(trTitle); 
+    // Cria o título da tabela
+    const trTitle = document.createElement("tr");
+    const thTitle = document.createElement("th");
+    thTitle.textContent = "Modelos";
+    thTitle.colSpan = 3;
+    trTitle.appendChild(thTitle);
+    thead.appendChild(trTitle);
 
+    // Cria o cabeçalho da tabela
     const cabecalho = ["Modelo", "Fabriante", "Pais de Origem"];
     const tr = document.createElement("tr");
     cabecalho.forEach((campo) => {
@@ -18,6 +19,7 @@ const criarTabelaModelo = (dados) => {
         th.textContent = campo;
         tr.appendChild(th);
     });
+    thead.appendChild(tr);
 
 
     //cria o corpo da tabela
@@ -30,22 +32,21 @@ const criarTabelaModelo = (dados) => {
     
             //fabricante
             const tdFabricante = document.createElement("td");
-            tdFabricante.textContent = item.fabricante.nome;
+            tdFabricante.textContent = item.fabricante ? item.fabricante.nome : "N/A";
             tr.appendChild(tdFabricante);
     
             //pais de origem
             const tdPais = document.createElement("td");
-            tdPais.textContent = item.fabricante.paisOrigem;
+            tdPais.textContent = item.fabricante ? item.fabricante.paisOrigem : "N/A";
             tr.appendChild(tdPais);
     
             tbody.appendChild(tr);
         });
     
-    table.appendChild(tbody);
-
     //adiciona classe para estilizar a tabela
     table.classList.add("tabela-dados");
     table.appendChild(thead);
+    table.appendChild(tbody);
 
     return table;
 }

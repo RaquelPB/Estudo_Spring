@@ -3,14 +3,15 @@ const criarTabelaVeiculo = (dados) => {
     const thead = document.createElement("thead");
     const tbody = document.createElement("tbody");
 
-    // Cria o cabeçalho da tabela
-   const trTitle = document.createElement("tr");
-   const th = document.createElement("th");
-   th.textContent = "Veículos";
-   th.colSpan = 6;
-   trTitle.appendChild(th);
-   thead.appendChild(trTitle); 
+    // Cria o título da tabela
+    const trTitle = document.createElement("tr");
+    const thTitle = document.createElement("th");
+    thTitle.textContent = "Veículos";
+    thTitle.colSpan = 6;
+    trTitle.appendChild(thTitle);
+    thead.appendChild(trTitle);
 
+    // Cria o cabeçalho da tabela
     const cabecalho = ["Placa", "Ano", "Cor", "Modelo", "Fabricante", "Acão"];
     const tr = document.createElement("tr");
     cabecalho.forEach((campo) => {
