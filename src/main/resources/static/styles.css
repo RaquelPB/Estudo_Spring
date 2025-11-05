@@ -76,6 +76,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #
   font-weight: 600;
 }
 
+#form-veiculo input,
 #form-modelo input,
 #form-fabricante input{
   width: 100%;
@@ -86,6 +87,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #
   border-radius: var(--radius-sm);
 }
 
+#form-veiculo label,
 #form-modelo label,
 #form-fabricante label{
   font-weight: 600;
@@ -93,6 +95,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #
   display: block;
 }
 
+#form-veiculo select,
 #form-modelo select,
 #form-fabricante select{
   width: 100%;
@@ -103,6 +106,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #
   border-radius: var(--radius-sm);
 }
 
+#form-veiculo button,
 #form-modelo button,
 #form-fabricante button{
   margin-top: 20px;

@@ -62,9 +62,10 @@
                         <option value="Índia">Índia</option>
                     </select>
 
-                    <button type="submit" class="btn primary">Enviar</button>
+                    <button class="btn primary">Enviar</button>
                 </form>
           </div>
+
           <div id="modal-content-modelo" class="modal-content">
                 <div id="modal-title">Cadastro de Modelo</div>
                 <form id="form-modelo">
@@ -74,10 +75,39 @@
                     <select id="fabricante-modelo" name="fabricante-modelo" required>
                         <option value="" disabled selected>Selecione um fabricante</option>
                     </select>
-                    <button type="submit" class="btn primary">Enviar</button>
+                    <button class="btn primary">Enviar</button>
                 </form>
+            </div>
+
+            <div id="modal-content-veiculo" class="modal-content">
+                <div id="modal-title">Cadastro de Veículo</div>
+                <form id="form-veiculo">
+                    
+                    <label for="placa-veiculo">Placa:</label>
+                    <input type="text" id="placa-veiculo" name="placa-veiculo" placeholder="Placa do veículo">
+
+                    <label for="cor-veiculo">Cor:</label>
+                    <input type="text" id="cor-veiculo" name="cor-veiculo" placeholder="Cor do veículo">
+
+                    <label for="preco-veiculo">Preço:</label>
+                    <input type="number" id="preco-veiculo" name="preco-veiculo" placeholder="Preço do veículo">
+
+                    <label for="ano-veiculo">Ano:</label>
+                    <input type="number" id="ano-veiculo" name="ano-veiculo" placeholder="Ano do veículo">
+
+                    <label for="descricao-veiculo">Descrição:</label>
+                    <textarea id="descricao-veiculo" name="descricao-veiculo" placeholder="Descrição do veículo"></textarea>
+
+                    <label for="modelo-veiculo">Modelo:</label>
+                    <select id="modelo-veiculo" name="modelo-veiculo" required>
+                        <option value="" disabled selected>Selecione um modelo</option>
+                    </select>
+           
+
+                    <button  class="btn primary">Enviar</button>
+                </form>
+            </div>
         </div>
-    </main>
 
         <div class="container">
             <section id="fabricantes" class="section">
