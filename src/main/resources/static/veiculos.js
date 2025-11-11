@@ -48,6 +48,8 @@ const criarTabelaVeiculo = (dados) => {
             const tdFabricante = document.createElement("td");
             tdFabricante.textContent = item.modelo.fabricante.nome;
             tr.appendChild(tdFabricante);
+
+        
     
     
             tbody.appendChild(tr);

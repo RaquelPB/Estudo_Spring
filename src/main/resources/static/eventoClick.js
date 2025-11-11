@@ -67,7 +67,9 @@ document.getElementById("form-fabricante").addEventListener("submit", async func
         alert("Conflito: O fabricante já existe ou há um problema com os dados enviados.");
     } else if (require.ok) {
         alert("Fabricante adicionado com sucesso!");
-        modal.style.display = "none";
+        document.getElementById("form-fabricante").reset();
+        document.getElementById("modal-content-fabricante").style.display = "none";
+
     } else {
         alert("Erro ao adicionar fabricante.");
     }
@@ -178,6 +180,19 @@ CLOSE_MODAL_BUTTON.addEventListener("click", function() {
 //evento de clique no botão adicionar fabricante
 document.getElementById("novo-fabricante").addEventListener("click", async function(event) {
     setMostrarOcutarElemento(true, ".modal-content");
+
+    //carregar json com nomes e paises do arquivo externo json
+
+    const dadosPaises = await getData("http://localhost:8080/paises.json");
+    const selectPais = document.getElementById("pais-fabricante");
+    setRemoverElementos("#pais-fabricante option");
+    dadosPaises.forEach(function(pais) {    
+        const option = document.createElement("option");
+        option.value = pais.sigla;
+        option.textContent = pais.nome_pais;
+        selectPais.appendChild(option);
+    });
+
     modal.style.display = "block";
     setMostrarOcutarElemento(false, "#modal-content-fabricante");
  });

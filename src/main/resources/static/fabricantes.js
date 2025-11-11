@@ -8,13 +8,15 @@ function criarTabelaFabricante(dados) {
     const trTitle = document.createElement("tr");
     const thTitle = document.createElement("th");
     thTitle.textContent = "Fabricantes";
-    const cabecalho = Object.keys(dados[0]);
+    const cabecalho = Object.keys(dados[0]) ;
     thTitle.colSpan = cabecalho.length;
     trTitle.appendChild(thTitle);
     thead.appendChild(trTitle);
 
     // Cria o cabeçalho da tabela
     const tr = document.createElement("tr");
+    const actions = ["Ação"]
+    
 
 
     cabecalho.forEach(function(campo) {
