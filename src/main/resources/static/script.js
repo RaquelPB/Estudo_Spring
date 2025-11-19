@@ -16,5 +16,5 @@ async function getData(url) {
     }
 }
 
-// Funcao para requisição DELETE
+
 

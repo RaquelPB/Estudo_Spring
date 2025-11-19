@@ -31,6 +31,11 @@ public class VeiculoService {
                     .orElseThrow(() -> new RuntimeException("Veículo não encontrado."));
     
     }
+
+    @Transactional(readOnly = true)
+    public boolean existPorPlaca(String placa){
+        return repository.existsByPlaca(placa);
+    }
     
 
     @Transactional

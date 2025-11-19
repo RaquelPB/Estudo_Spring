@@ -35,6 +35,12 @@ public class VeiculoController {
         return service.buscarPorId(id);
     }
 
+    @GetMapping("/existe/{placa}")
+    public boolean existPorPlaca (@PathVariable String placa){
+        return service.existPorPlaca(placa);
+    }
+    
+
     @PostMapping
     public ResponseEntity<VeiculoDTO> criar(@RequestBody VeiculoDTO dto){
         VeiculoDTO criado = service.criar(dto);
