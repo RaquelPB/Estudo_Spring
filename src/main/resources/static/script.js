@@ -17,4 +17,28 @@ async function getData(url) {
 }
 
 
+// função para deletar
+async function setDelete(url) {
+  try {
+    const response = await fetch(url, {
+      method: "DELETE"
+    });
+
+    if (!response.ok) {
+      return { error: true, status: response.status, message: response.statusText };
+    }
+
+    return { error: false, status: response.status };
+  } catch (error) {
+
+    return { error: true, message: error.message };
+  }
+}
+
+
+
+
+
+
+
 

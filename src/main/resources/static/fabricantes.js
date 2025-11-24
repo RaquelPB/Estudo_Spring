@@ -12,7 +12,7 @@ const criarTabelaFabricante = function (dados) {
     thead.appendChild(trTitle);
   
     // Cabeçalho das colunas
-    const cabecalho = ["ID", "Fabricante", "País de Origem", "Ação"];
+    const cabecalho = ["ID", "Fabricante", "País de Origem", "Açôes"];
     const trCabecalho = document.createElement("tr");
     cabecalho.forEach(function (campo) {
       const th = document.createElement("th");
