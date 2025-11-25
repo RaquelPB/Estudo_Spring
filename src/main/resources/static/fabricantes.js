@@ -44,45 +44,22 @@ const criarTabelaFabricante = function (dados) {
       tdPaisOrigem.textContent = item.paisOrigem;
       tr.appendChild(tdPaisOrigem);
   
-      // Ícones
-      const deletar = document.createElement("td");
-      deletar.innerHTML = '<button class="btn delete">Deletar</button>';
-      deletar.addEventListener("click", async function () {
-        const confirmacao = confirm(
-          `Tem certeza que deseja excluir o fabricante com ID ${item.id}?`
-        );
-        if (!confirmacao) return;
-  
-        try {
-          const resposta = await fetch(
-            `http://localhost:8080/api/fabricantes/${item.id}`,
-            {
-              method: "DELETE",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-  
-          if (resposta.ok) {
-            tr.remove();
-            alert(`Fabricante com ID ${item.id} deletado com sucesso.`);
-          } else {
-            const erro = await resposta.json();
-            alert(`Erro ao deletar: ${erro.message || resposta.statusText}`);
-          }
-        } catch (erro) {
-          alert(`Erro de conexão: ${erro.message}`);
-        }
-      });
-      tr.appendChild(deletar);
-  
+      // Ações
+      const acoes = document.createElement("td");
+
+      acoes.appendChild = (btnEditar);
+      acoes.appendChild = (btnExcluir);
+      
+      tr.appendChild(acoes);
+
       tbody.appendChild(tr);
     });
   
     tabela.appendChild(tbody);
     return tabela;
   };
+
+  
   
   document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("modal");

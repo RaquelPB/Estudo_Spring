@@ -42,7 +42,7 @@ const criarTabelaModelo = (dados) => {
 
 
             //ações
-            const tdacoes = document.createElement("td");
+            const tdAcoes = document.createElement("td");
 
             //botão deletar
             const btnDelete = document.createElement("button");
@@ -62,8 +62,8 @@ const criarTabelaModelo = (dados) => {
                 }
                 });
 
-            tdacoes.appendChild(btnDelete);
-            tr.appendChild(tdacoes);
+            tdAcoes.appendChild(btnDelete);
+            tr.appendChild(tdAcoes);
 
 
     

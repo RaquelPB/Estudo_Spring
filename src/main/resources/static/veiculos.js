@@ -72,15 +72,18 @@ const criarTabelaVeiculo = (dados) => {
                 }
             })
 
-    
+            tr.appendChild(tdDeletar)
             tbody.appendChild(tr);
         });
+
     
     table.appendChild(tbody);
 
     //adiciona classe para estilizar a tabela
     table.classList.add("tabela-dados");
     table.appendChild(thead);
+
+    
 
     return table;
 

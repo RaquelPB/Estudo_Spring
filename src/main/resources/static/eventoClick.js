@@ -48,6 +48,14 @@ document.getElementById("form-fabricante").addEventListener("submit", async func
 
     const nome_fabricante = document.getElementById("nome-fabricante").value;
     const pais_origem = document.getElementById("pais-fabricante").value;
+    const fabricanteData = {nome: nome_fabricante, paisOrigem: pais_origem};
+
+    let resultado;
+
+    if(fabricanteEmEdicao) {
+        //Modo de edição - usa PUT
+        resultado = await putData("http://localhost:8080/api/fabricantes/${fabricanteEmEdicao}. fabricante
+    }else
 
 
     const require = await fetch("http://localhost:8080/api/fabricantes", {
@@ -177,12 +185,22 @@ CLOSE_MODAL_BUTTON.addEventListener("click", function() {
     modal.style.display = "none";
 });
 
+
+//variavél global para armazenar o ID do fabricante sendo editado
+let fabricanteEmEdicao = null;
+
+
+
+
 //evento de clique no botão adicionar fabricante
 document.getElementById("novo-fabricante").addEventListener("click", async function(event) {
+    fabricanteEmEdicao = null;
     setMostrarOcutarElemento(true, ".modal-content");
 
-    //carregar json com nomes e paises do arquivo externo json
+    // atualizar o titulo do modal
+    document.getElementById("modal.title").textContent = "Editar Fabricante";
 
+    //carregar json com nomes e paises do arquivo externo json
     const dadosPaises = await getData("http://localhost:8080/paises.json");
     const selectPais = document.getElementById("pais-fabricante");
     setRemoverElementos("#pais-fabricante option");
@@ -195,7 +213,36 @@ document.getElementById("novo-fabricante").addEventListener("click", async funct
 
     modal.style.display = "block";
     setMostrarOcutarElemento(false, "#modal-content-fabricante");
- });
+});
+
+//funcao para abrir o modal de edição de fabricante
+async function abrirModalEdicaoFabricante(fabricante){
+    fabricanteEmEdicao = fabricante.id;
+    setMostrarOcutarElemento(true, ".modal-content");
+
+    // atualizar titulo
+    document.getElementById("modal-title").textContent="Editar afabricante";
+
+    //carregar json com nomes
+    const dadosPaises = await getData("http://localhost:8080/paises.json");
+    const selectPais = document.getElementById("pais-fabricante");
+    setRemoverElementos("#pais-fabricante option");
+    dadosPaises.forEach(function(pais) {
+      const option =document.createElement("option");
+      option.value = pais.nome_pais;
+      option.textContent = pais.nome_pais;
+      selectPais.appendChild(option);
+    });
+
+    // preencher camposcom os dados do fabricante
+
+    document.getElementById("nome-fabricante").value = fabricante.nome;
+    document.getElementById("pais-fabricante").value = fabricante.paisOrigem;
+    
+    MODAL.style.display = "block";
+    setShowHide(false, ".modal-content-fabricante");
+
+}
 
  //evento de clique no botão adicionar modelo
  document.getElementById("novo-modelo").addEventListener("click", async function(event) {
