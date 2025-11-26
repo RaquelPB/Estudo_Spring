@@ -54,8 +54,13 @@ document.getElementById("form-fabricante").addEventListener("submit", async func
 
     if(fabricanteEmEdicao) {
         //Modo de edição - usa PUT
-        resultado = await putData("http://localhost:8080/api/fabricantes/${fabricanteEmEdicao}. fabricante
-    }else
+        resultado = await putData()
+    }else {
+        // Modo de cadastro - uso POST
+        resultado = await postData("http://localhost:8080/api/fabricantes", fabricanteData)
+    }
+
+    
 
 
     const require = await fetch("http://localhost:8080/api/fabricantes", {
@@ -82,6 +87,9 @@ document.getElementById("form-fabricante").addEventListener("submit", async func
         alert("Erro ao adicionar fabricante.");
     }
 });
+
+
+//
 
 
 
@@ -214,6 +222,7 @@ document.getElementById("novo-fabricante").addEventListener("click", async funct
     modal.style.display = "block";
     setMostrarOcutarElemento(false, "#modal-content-fabricante");
 });
+
 
 //funcao para abrir o modal de edição de fabricante
 async function abrirModalEdicaoFabricante(fabricante){
